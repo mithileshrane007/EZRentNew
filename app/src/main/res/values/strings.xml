@@ -11,4 +11,5 @@
     <string name="categories">Categories</string>
     <string name="alert_title">Alerts</string>
     <string name="logout">Log Out</string>
+    <string name="some_error">SomeError</string>
 </resources>
