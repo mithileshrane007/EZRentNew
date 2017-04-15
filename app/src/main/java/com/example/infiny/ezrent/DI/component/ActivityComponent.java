@@ -5,6 +5,7 @@ package com.example.infiny.ezrent.DI.component;
 
 import com.example.infiny.ezrent.DI.PerActivity;
 import com.example.infiny.ezrent.DI.module.ActivityModule;
+import com.example.infiny.ezrent.UI.login.LoginActivity;
 
 import dagger.Component;
 
@@ -14,7 +15,7 @@ public interface ActivityComponent {
 
 //    void inject(MainActivity activity);
 //
-//    void inject(LoginActivity activity);
+    void inject(LoginActivity activity);
 //
 //    void inject(SplashActivity activity);
 //

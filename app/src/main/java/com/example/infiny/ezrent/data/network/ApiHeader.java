@@ -15,16 +15,12 @@
 
 package com.example.infiny.ezrent.data.network;
 
+import com.example.infiny.ezrent.DI.ApiInfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.mindorks.framework.mvp.di.ApiInfo;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-/**
- * Created by janisharali on 27/01/17.
- */
 
 @Singleton
 public class ApiHeader {

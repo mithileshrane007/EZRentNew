@@ -11,21 +11,11 @@ import com.example.infiny.ezrent.data.network.model.LoginRequest;
 import com.example.infiny.ezrent.data.network.model.LoginResponse;
 import com.example.infiny.ezrent.data.network.model.LogoutResponse;
 import com.example.infiny.ezrent.data.prefs.PreferencesHelper;
-import com.example.infiny.ezrent.utils.AppConstants;
-import com.example.infiny.ezrent.utils.CommonUtils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.internal.$Gson$Types;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.functions.Function;
 
 @Singleton
 public class AppDataManager implements DataManager {
@@ -50,12 +40,17 @@ public class AppDataManager implements DataManager {
 
 
     @Override
+    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
+
+    }
+
+    @Override
     public Observable<Long> insertUser(User user) {
         return null;
     }
 
     @Override
-    public Observable<List<User>> getAllUsers() {
+    public Observable<User> getAllUser() {
         return null;
     }
 
@@ -146,11 +141,6 @@ public class AppDataManager implements DataManager {
 
     @Override
     public void setAccessToken(String accessToken) {
-
-    }
-
-    @Override
-    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
 
     }
 }

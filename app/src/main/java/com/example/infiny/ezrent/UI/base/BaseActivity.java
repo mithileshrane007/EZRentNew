@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
-import android.support.multidex.MultiDex;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +20,7 @@ import com.example.infiny.ezrent.DI.component.ActivityComponent;
 import com.example.infiny.ezrent.DI.module.ActivityModule;
 import com.example.infiny.ezrent.EZRentApp;
 import com.example.infiny.ezrent.R;
+import com.example.infiny.ezrent.UI.login.LoginActivity;
 import com.example.infiny.ezrent.utils.CommonUtils;
 import com.example.infiny.ezrent.utils.NetworkUtils;
 
@@ -38,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .applicationComponent(((EZRentApp) getApplication()).getComponent())

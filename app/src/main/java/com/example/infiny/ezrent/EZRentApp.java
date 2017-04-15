@@ -6,13 +6,15 @@ import android.support.multidex.MultiDexApplication;
 
 import com.example.infiny.ezrent.DI.component.ApplicationComponent;
 import com.example.infiny.ezrent.DI.module.ApplicationModule;
+import com.example.infiny.ezrent.data.DataManager;
 
-/**
- * Created by infiny on 15/4/17.
- */
+import javax.inject.Inject;
+
 
 public class EZRentApp extends MultiDexApplication {
     private ApplicationComponent mApplicationComponent;
+    @Inject
+    DataManager mDataManager;
 
     @Override
     public void onCreate() {
@@ -28,6 +30,11 @@ public class EZRentApp extends MultiDexApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    // Needed to replace the component with a test specific one
+    public void setComponent(ApplicationComponent applicationComponent) {
+        mApplicationComponent = applicationComponent;
     }
 
     public ApplicationComponent getComponent() {
