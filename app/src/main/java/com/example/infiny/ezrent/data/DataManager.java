@@ -1,40 +1,82 @@
 package com.example.infiny.ezrent.data;
 
+import android.content.Context;
 
-import com.example.infiny.ezrent.data.db.DbHelper;
-import com.example.infiny.ezrent.data.network.ApiHelper;
-import com.example.infiny.ezrent.data.prefs.PreferencesHelper;
+import com.example.infiny.ezrent.data.preference.SharedPreferenceHelper;
+import com.example.infiny.ezrent.di.ApplicationContext;
 
-public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
+import javax.inject.Inject;
 
-    void updateApiHeader(Long userId, String accessToken);
+/**
+ * Created by infiny on 17/4/17.
+ */
 
-    void setUserAsLoggedOut();
+public class DataManager implements DataMangerContract{
+    private final Context mContext;
+    SharedPreferenceHelper mPreferencesHelper;
+    @Inject
+    public DataManager(@ApplicationContext Context context,
+                          SharedPreferenceHelper preferencesHelper) {
+        mContext = context;
+        mPreferencesHelper = preferencesHelper;
+    }
+    @Override
+    public int getCurrentUserLoggedInMode() {
+        return mPreferencesHelper.getCurrentUserLoggedInMode();
+    }
 
+    @Override
+    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
+        mPreferencesHelper.setCurrentUserLoggedInMode(mode);
+    }
 
-    void updateUserInfo(
-            String accessToken,
-            Long userId,
-            LoggedInMode loggedInMode,
-            String userName,
-            String email,
-            String profilePicPath);
+    @Override
+    public Long getCurrentUserId() {
+        return mPreferencesHelper.getCurrentUserId();
+    }
 
-    enum LoggedInMode {
+    @Override
+    public void setCurrentUserId(Long userId) {
+        mPreferencesHelper.setCurrentUserId(userId);
+    }
 
-        LOGGED_IN_MODE_LOGGED_OUT(0),
-        LOGGED_IN_MODE_GOOGLE(1),
-        LOGGED_IN_MODE_FB(2),
-        LOGGED_IN_MODE_SERVER(3);
+    @Override
+    public String getCurrentUserName() {
+        return mPreferencesHelper.getCurrentUserName();
+    }
 
-        private final int mType;
+    @Override
+    public void setCurrentUserName(String userName) {
+        mPreferencesHelper.setCurrentUserName(userName);
+    }
 
-        LoggedInMode(int type) {
-            mType = type;
-        }
+    @Override
+    public String getCurrentUserEmail() {
+        return mPreferencesHelper.getCurrentUserEmail();
+    }
 
-        public int getType() {
-            return mType;
-        }
+    @Override
+    public void setCurrentUserEmail(String email) {
+        mPreferencesHelper.setCurrentUserEmail(email);
+    }
+
+    @Override
+    public String getCurrentUserProfilePicUrl() {
+        return mPreferencesHelper.getCurrentUserProfilePicUrl();
+    }
+
+    @Override
+    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
+        mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
+    }
+
+    @Override
+    public String getAccessToken() {
+        return mPreferencesHelper.getAccessToken();
+    }
+
+    @Override
+    public void setAccessToken(String accessToken) {
+        mPreferencesHelper.setAccessToken(accessToken);
     }
 }

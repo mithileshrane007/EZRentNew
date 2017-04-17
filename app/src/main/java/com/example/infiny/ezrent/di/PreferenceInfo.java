@@ -13,19 +13,18 @@
  * limitations under the License
  */
 
-package com.example.infiny.ezrent.DI;
+package com.example.infiny.ezrent.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import javax.inject.Scope;
+import javax.inject.Qualifier;
 
 /**
  * Created by janisharali on 27/01/17.
  */
 
-@Scope
+@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PerActivity {
+public @interface PreferenceInfo {
 }
-

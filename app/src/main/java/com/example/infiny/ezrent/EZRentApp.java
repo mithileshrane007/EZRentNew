@@ -4,25 +4,21 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
-import com.example.infiny.ezrent.DI.component.ApplicationComponent;
-import com.example.infiny.ezrent.DI.module.ApplicationModule;
-import com.example.infiny.ezrent.data.DataManager;
-
-import javax.inject.Inject;
+import com.example.infiny.ezrent.di.component.ApplicationComponent;
+import com.example.infiny.ezrent.di.component.DaggerApplicationComponent;
+import com.example.infiny.ezrent.di.module.ApplicationModule;
 
 
 public class EZRentApp extends MultiDexApplication {
-    private ApplicationComponent mApplicationComponent;
-    @Inject
-    DataManager mDataManager;
 
+
+    private ApplicationComponent applicationComponent;
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this)).build();
+        applicationComponent= DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+        applicationComponent.injectApplication(this);
 
-        mApplicationComponent.inject(this);
 
     }
 
@@ -32,12 +28,4 @@ public class EZRentApp extends MultiDexApplication {
         MultiDex.install(this);
     }
 
-    // Needed to replace the component with a test specific one
-    public void setComponent(ApplicationComponent applicationComponent) {
-        mApplicationComponent = applicationComponent;
-    }
-
-    public ApplicationComponent getComponent() {
-        return mApplicationComponent;
-    }
 }

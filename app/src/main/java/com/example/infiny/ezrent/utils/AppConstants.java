@@ -1,9 +1,4 @@
-
-
 package com.example.infiny.ezrent.utils;
-
-
-
 public final class AppConstants {
 
     public static final int STATUS_CODE_SUCCESS = 0;
