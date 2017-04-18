@@ -1,82 +1,27 @@
 package com.example.infiny.ezrent.data;
 
-import android.content.Context;
-
-import com.example.infiny.ezrent.data.preference.SharedPreferenceHelper;
-import com.example.infiny.ezrent.di.ApplicationContext;
-
-import javax.inject.Inject;
+import com.example.infiny.ezrent.data.preference.PreferencesHelper;
 
 /**
  * Created by infiny on 17/4/17.
  */
 
-public class DataManager implements DataMangerContract{
-    private final Context mContext;
-    SharedPreferenceHelper mPreferencesHelper;
-    @Inject
-    public DataManager(@ApplicationContext Context context,
-                          SharedPreferenceHelper preferencesHelper) {
-        mContext = context;
-        mPreferencesHelper = preferencesHelper;
-    }
-    @Override
-    public int getCurrentUserLoggedInMode() {
-        return mPreferencesHelper.getCurrentUserLoggedInMode();
-    }
+public interface DataManager extends PreferencesHelper {
+    enum LoggedInMode {
 
-    @Override
-    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
-        mPreferencesHelper.setCurrentUserLoggedInMode(mode);
-    }
+        LOGGED_IN_MODE_LOGGED_OUT(0),
+        LOGGED_IN_MODE_GOOGLE(1),
+        LOGGED_IN_MODE_FB(2),
+        LOGGED_IN_MODE_SERVER(3);
 
-    @Override
-    public Long getCurrentUserId() {
-        return mPreferencesHelper.getCurrentUserId();
-    }
+        private final int mType;
 
-    @Override
-    public void setCurrentUserId(Long userId) {
-        mPreferencesHelper.setCurrentUserId(userId);
-    }
+        LoggedInMode(int type) {
+            mType = type;
+        }
 
-    @Override
-    public String getCurrentUserName() {
-        return mPreferencesHelper.getCurrentUserName();
-    }
-
-    @Override
-    public void setCurrentUserName(String userName) {
-        mPreferencesHelper.setCurrentUserName(userName);
-    }
-
-    @Override
-    public String getCurrentUserEmail() {
-        return mPreferencesHelper.getCurrentUserEmail();
-    }
-
-    @Override
-    public void setCurrentUserEmail(String email) {
-        mPreferencesHelper.setCurrentUserEmail(email);
-    }
-
-    @Override
-    public String getCurrentUserProfilePicUrl() {
-        return mPreferencesHelper.getCurrentUserProfilePicUrl();
-    }
-
-    @Override
-    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
-        mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
-    }
-
-    @Override
-    public String getAccessToken() {
-        return mPreferencesHelper.getAccessToken();
-    }
-
-    @Override
-    public void setAccessToken(String accessToken) {
-        mPreferencesHelper.setAccessToken(accessToken);
+        public int getType() {
+            return mType;
+        }
     }
 }

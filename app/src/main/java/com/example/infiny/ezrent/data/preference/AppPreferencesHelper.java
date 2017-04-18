@@ -3,10 +3,11 @@ package com.example.infiny.ezrent.data.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.infiny.ezrent.data.DataMangerContract;
+import com.example.infiny.ezrent.data.DataManager;
 import com.example.infiny.ezrent.di.ApplicationContext;
 import com.example.infiny.ezrent.di.PreferenceInfo;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
@@ -14,7 +15,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class SharedPreferenceHelper implements SharedPreferenceContract{
+public class AppPreferencesHelper implements PreferencesHelper {
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
     private static final String PREF_KEY_CURRENT_USER_NAME = "PREF_KEY_CURRENT_USER_NAME";
@@ -25,9 +26,9 @@ public class SharedPreferenceHelper implements SharedPreferenceContract{
 
     private final SharedPreferences mPrefs;
 
-
-    public SharedPreferenceHelper(@ApplicationContext Context context,
-                                  @PreferenceInfo String prefFileName) {
+    @Inject
+    public AppPreferencesHelper(@ApplicationContext Context context,
+                                @PreferenceInfo String prefFileName) {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE);
     }
 
@@ -38,7 +39,7 @@ public class SharedPreferenceHelper implements SharedPreferenceContract{
     }
 
     @Override
-    public void setCurrentUserLoggedInMode(DataMangerContract.LoggedInMode mode) {
+    public void setCurrentUserLoggedInMode(DataManager.LoggedInMode mode) {
 
     }
 

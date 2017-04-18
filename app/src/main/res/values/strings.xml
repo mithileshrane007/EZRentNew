@@ -12,4 +12,11 @@
     <string name="alert_title">Alerts</string>
     <string name="logout">Log Out</string>
     <string name="some_error">SomeError</string>
+
+    <!--LoginActivity-->
+    <string name="email_name">Email</string>
+    <string name="password_name">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="title_activity_login">Log In</string>
+
 </resources>

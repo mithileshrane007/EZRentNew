@@ -1,15 +1,15 @@
 package com.example.infiny.ezrent.data.preference;
 
-import com.example.infiny.ezrent.data.DataMangerContract;
+import com.example.infiny.ezrent.data.DataManager;
 
 /**
  * Created by infiny on 17/4/17.
  */
 
-public interface SharedPreferenceContract {
+public interface PreferencesHelper {
     int getCurrentUserLoggedInMode();
 
-    void setCurrentUserLoggedInMode(DataMangerContract.LoggedInMode mode);
+    void setCurrentUserLoggedInMode(DataManager.LoggedInMode mode);
 
     Long getCurrentUserId();
 
