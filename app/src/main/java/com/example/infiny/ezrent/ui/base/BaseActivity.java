@@ -1,7 +1,6 @@
 package com.example.infiny.ezrent.ui.base;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -11,7 +10,6 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,11 +41,6 @@ public class BaseActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getApplication() instanceof Application){
-            Log.d("erre","true");
-        }else {
-            Log.d("erre","false");
-        }
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .applicationComponent(((EZRentApp) getApplication()).getComponent())
