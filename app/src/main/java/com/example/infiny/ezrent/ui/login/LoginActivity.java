@@ -15,8 +15,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView  {
+
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
+
     @BindView(R.id.etEmail)
     EditText etEmail;
     @BindView(R.id.etPassword)
