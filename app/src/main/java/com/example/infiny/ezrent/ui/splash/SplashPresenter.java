@@ -15,8 +15,15 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
         implements SplashMvpPresenter<V> {
     private static final String TAG = "SplashPresenter";
 
+
+
     @Inject
     public SplashPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         super(dataManager, compositeDisposable);
+    }
+
+    @Override
+    public DataManager getDataManager() {
+        return super.getDataManager();
     }
 }
