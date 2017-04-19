@@ -7,7 +7,6 @@ import android.widget.EditText;
 
 import com.example.infiny.ezrent.R;
 import com.example.infiny.ezrent.ui.base.BaseActivity;
-import com.yayandroid.locationmanager.configuration.LocationConfiguration;
 
 import javax.inject.Inject;
 
@@ -26,11 +25,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView  {
     EditText etPassword;
     @BindView(R.id.btnLogin)
     Button btnLogin;
-
-    @Override
-    public LocationConfiguration getLocationConfiguration() {
-        return null;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

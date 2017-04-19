@@ -4,10 +4,8 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -25,9 +23,6 @@ import com.example.infiny.ezrent.di.module.ActivityModule;
 import com.example.infiny.ezrent.utils.CommonUtils;
 import com.example.infiny.ezrent.utils.KeyboardUtils;
 import com.example.infiny.ezrent.utils.NetworkUtils;
-import com.yayandroid.locationmanager.LocationManager;
-import com.yayandroid.locationmanager.configuration.LocationConfiguration;
-import com.yayandroid.locationmanager.listener.LocationListener;
 
 import butterknife.Unbinder;
 
@@ -35,8 +30,8 @@ import butterknife.Unbinder;
  * Created by infiny on 18/4/17.
  */
 
-public abstract class BaseActivity extends AppCompatActivity
-        implements MvpView,BaseFragment.Callback, LocationListener {
+public class BaseActivity extends AppCompatActivity
+        implements MvpView,BaseFragment.Callback{
 
     private ProgressDialog mProgressDialog;
 
@@ -44,12 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity
 
     private Unbinder mUnBinder;
 
-    private LocationManager locationManager;
-
-    public abstract LocationConfiguration getLocationConfiguration();
-
-
-    @CallSuper
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,52 +47,36 @@ public abstract class BaseActivity extends AppCompatActivity
                 .activityModule(new ActivityModule(this))
                 .applicationComponent(((EZRentApp) getApplication()).getComponent())
                 .build();
-
-        locationManager = new LocationManager.Builder(getApplication())
-                .configuration(getLocationConfiguration())
-                .activity(this)
-                .notify(this)
-                .build();
     }
 
 
-    @CallSuper
     @Override
     protected void onResume() {
         super.onResume();
-        locationManager.onResume();
     }
 
-    @CallSuper
     @Override
     protected void onPause() {
-        locationManager.onPause();
         super.onPause();
     }
 
-    @CallSuper
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        locationManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    @CallSuper
     @Override
     protected void onDestroy() {
         if (mUnBinder != null) {
             mUnBinder.unbind();
         }
-        locationManager.onDestroy();
         super.onDestroy();
     }
 
 
-    @CallSuper
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        locationManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -174,61 +147,6 @@ public abstract class BaseActivity extends AppCompatActivity
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-
-    //-------------LocationManager
-
-
-    @Override
-    public void onProcessTypeChanged(int processType) {
-
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onLocationFailed(int type) {
-
-    }
-
-    @Override
-    public void onPermissionGranted(boolean alreadyHadPermission) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-    protected void getLocation() {
-        if (locationManager != null) {
-            locationManager.get();
-        } else {
-            throw new IllegalStateException("locationManager is null. "
-                    + "Make sure you call super.initialize before attempting to getLocation");
-        }
-    }
-
-
-    protected LocationManager getLocationManager() {
-        return locationManager;
-    }
-
-
-    //-------------LocationManager
 
     public ActivityComponent getActivityComponent() {
         return mActivityComponent;

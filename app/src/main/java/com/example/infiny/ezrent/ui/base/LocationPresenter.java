@@ -11,64 +11,64 @@ import com.yayandroid.locationmanager.constants.ProcessType;
  */
 
 public class LocationPresenter {
-    private LocationView sampleView;
+    private LocationView locationView;
 
     public LocationPresenter(LocationView view) {
-        this.sampleView = view;
+        this.locationView = view;
     }
 
     public void destroy() {
-        sampleView = null;
+        locationView = null;
     }
 
     public void onLocationChanged(Location location) {
-        sampleView.dismissProgress();
+        locationView.dismissProgress();
         setText(location);
     }
 
     public void onLocationFailed(@FailType int failType) {
-        sampleView.dismissProgress();
+        locationView.dismissProgress();
 
         switch (failType) {
             case FailType.TIMEOUT: {
-                sampleView.setLocationDetails("Couldn't get location, and timeout!");
+                locationView.setLocationDetails("Couldn't get location, and timeout!");
                 break;
             }
             case FailType.PERMISSION_DENIED: {
-                sampleView.setLocationDetails("Couldn't get location, because user didn't give permission!");
+                locationView.setLocationDetails("Couldn't get location, because user didn't give permission!");
                 break;
             }
             case FailType.NETWORK_NOT_AVAILABLE: {
-                sampleView.setLocationDetails("Couldn't get location, because network is not accessible!");
+                locationView.setLocationDetails("Couldn't get location, because network is not accessible!");
                 break;
             }
             case FailType.GOOGLE_PLAY_SERVICES_NOT_AVAILABLE: {
-                sampleView.setLocationDetails("Couldn't get location, because Google Play Services not available!");
+                locationView.setLocationDetails("Couldn't get location, because Google Play Services not available!");
                 break;
             }
             case FailType.GOOGLE_PLAY_SERVICES_CONNECTION_FAIL: {
-                sampleView.setLocationDetails("Couldn't get location, because Google Play Services connection failed!");
+                locationView.setLocationDetails("Couldn't get location, because Google Play Services connection failed!");
                 break;
             }
             case FailType.GOOGLE_PLAY_SERVICES_SETTINGS_DIALOG: {
-                sampleView.setLocationDetails("Couldn't display settingsApi dialog!");
+                locationView.setLocationDetails("Couldn't display settingsApi dialog!");
                 break;
             }
             case FailType.GOOGLE_PLAY_SERVICES_SETTINGS_DENIED: {
-                sampleView.setLocationDetails("Couldn't get location, because user didn't activate providers via settingsApi!");
+                locationView.setLocationDetails("Couldn't get location, because user didn't activate providers via settingsApi!");
                 break;
             }
             case FailType.VIEW_DETACHED: {
-                sampleView.setLocationDetails("Couldn't get location, because in the process view was detached!");
+                locationView.setLocationDetails("Couldn't get location, because in the process view was detached!");
                 break;
             }
             case FailType.VIEW_NOT_REQUIRED_TYPE: {
-                sampleView.setLocationDetails("Couldn't get location, "
+                locationView.setLocationDetails("Couldn't get location, "
                         + "because view wasn't sufficient enough to fulfill given configuration!");
                 break;
             }
             case FailType.UNKNOWN: {
-                sampleView.setLocationDetails("Ops! Something went wrong!");
+                locationView.setLocationDetails("Ops! Something went wrong!");
                 break;
             }
         }
@@ -77,15 +77,15 @@ public class LocationPresenter {
     public void onProcessTypeChanged(@ProcessType int newProcess) {
         switch (newProcess) {
             case ProcessType.GETTING_LOCATION_FROM_GOOGLE_PLAY_SERVICES: {
-                sampleView.updateProgress("Getting Location from Google Play Services...");
+                locationView.updateProgress("Getting Location from Google Play Services...");
                 break;
             }
             case ProcessType.GETTING_LOCATION_FROM_GPS_PROVIDER: {
-                sampleView.updateProgress("Getting Location from GPS...");
+                locationView.updateProgress("Getting Location from GPS...");
                 break;
             }
             case ProcessType.GETTING_LOCATION_FROM_NETWORK_PROVIDER: {
-                sampleView.updateProgress("Getting Location from Network...");
+                locationView.updateProgress("Getting Location from Network...");
                 break;
             }
             case ProcessType.ASKING_PERMISSIONS:
@@ -98,7 +98,7 @@ public class LocationPresenter {
     private void setText(Location location) {
         String appendValue = location.getLatitude() + ", " + location.getLongitude() + "\n";
         String newValue;
-        CharSequence current = sampleView.getLocationDetails();
+        CharSequence current = locationView.getLocationDetails();
 
         if (!TextUtils.isEmpty(current)) {
             newValue = current + appendValue;
@@ -106,7 +106,7 @@ public class LocationPresenter {
             newValue = appendValue;
         }
 
-        sampleView.setLocationDetails(newValue);
+        locationView.setLocationDetails(newValue);
     }
 
     public interface LocationView {

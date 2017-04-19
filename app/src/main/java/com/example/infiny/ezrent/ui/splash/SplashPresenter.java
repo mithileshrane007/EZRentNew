@@ -1,5 +1,7 @@
 package com.example.infiny.ezrent.ui.splash;
 
+import android.util.Log;
+
 import com.example.infiny.ezrent.data.DataManager;
 import com.example.infiny.ezrent.ui.base.BasePresenter;
 
@@ -25,5 +27,16 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     @Override
     public DataManager getDataManager() {
         return super.getDataManager();
+    }
+
+    @Override
+    public void setLocationDetails(String location) {
+        getDataManager().setLocation(location);
+        Log.d("locv",location+TAG);
+    }
+
+    @Override
+    public String getLocationDetails() {
+        return getDataManager().getLocation();
     }
 }

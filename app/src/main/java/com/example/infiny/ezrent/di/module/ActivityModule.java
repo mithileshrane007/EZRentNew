@@ -8,6 +8,9 @@ import com.example.infiny.ezrent.di.PerActivity;
 import com.example.infiny.ezrent.ui.login.LoginMvpPresenter;
 import com.example.infiny.ezrent.ui.login.LoginMvpView;
 import com.example.infiny.ezrent.ui.login.LoginPresenter;
+import com.example.infiny.ezrent.ui.splash.SplashMvpPresenter;
+import com.example.infiny.ezrent.ui.splash.SplashMvpView;
+import com.example.infiny.ezrent.ui.splash.SplashPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -47,4 +50,10 @@ public class ActivityModule  {
         return presenter;
     }
 
+    @Provides
+    @PerActivity
+    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(SplashPresenter<SplashMvpView>
+                                                                  presenter) {
+        return presenter;
+    }
 }

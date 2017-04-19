@@ -83,4 +83,14 @@ public class AppDataManager implements DataManager {
     public void setAccessToken(String accessToken) {
         mPreferencesHelper.setAccessToken(accessToken);
     }
+
+    @Override
+    public void setLocation(String location) {
+        mPreferencesHelper.setLocation(location);
+    }
+
+    @Override
+    public String getLocation() {
+        return mPreferencesHelper.getLocation();
+    }
 }

@@ -30,4 +30,8 @@ public interface PreferencesHelper {
     String getAccessToken();
 
     void setAccessToken(String accessToken);
+
+    void setLocation(String location);
+
+    String getLocation();
 }

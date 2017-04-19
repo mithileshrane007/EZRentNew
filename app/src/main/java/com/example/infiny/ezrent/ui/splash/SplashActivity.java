@@ -5,17 +5,24 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.infiny.ezrent.R;
-import com.example.infiny.ezrent.ui.base.BaseActivity;
+import com.example.infiny.ezrent.ui.base.LocationBaseActivity;
 import com.example.infiny.ezrent.ui.base.LocationPresenter;
 import com.yayandroid.locationmanager.configuration.Configurations;
 import com.yayandroid.locationmanager.configuration.LocationConfiguration;
 import com.yayandroid.locationmanager.constants.FailType;
 import com.yayandroid.locationmanager.constants.ProcessType;
 
-public class SplashActivity extends BaseActivity implements SplashMvpView,LocationPresenter.LocationView {
+import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 
+public class SplashActivity extends LocationBaseActivity implements SplashMvpView,LocationPresenter.LocationView {
+    private static final String TAG = "SplashActivity";
+
+    @Inject
+    SplashMvpPresenter<SplashMvpView> mPresenter;
     private LocationPresenter locationPresenter;
+
 
     @Override
     public LocationConfiguration getLocationConfiguration() {
@@ -26,6 +33,11 @@ public class SplashActivity extends BaseActivity implements SplashMvpView,Locati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        getActivityComponent().inject(this);
+        setUnBinder(ButterKnife.bind(this));
+
+        mPresenter.onAttach(SplashActivity.this);
         locationPresenter = new LocationPresenter(this);
         getLocation();
 
@@ -68,17 +80,19 @@ public class SplashActivity extends BaseActivity implements SplashMvpView,Locati
 
     @Override
     public String getLocationDetails() {
-        return null;
+        return mPresenter.getLocationDetails();
     }
 
     @Override
-    public void setLocationDetails(String text) {
-        Log.d("locv",text);
+    public void setLocationDetails(String location) {
+        Log.d("locv",location+TAG);
+        mPresenter.setLocationDetails(location);
+
     }
 
     @Override
-    public void updateProgress(String text) {
-        Log.d("locv",text);
+    public void updateProgress(String location) {
+        Log.d("locv",location);
 
     }
 
@@ -86,4 +100,6 @@ public class SplashActivity extends BaseActivity implements SplashMvpView,Locati
     public void dismissProgress() {
         hideLoading();
     }
+
+
 }
