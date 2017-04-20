@@ -20,4 +20,20 @@
     <string name="title_activity_login">Log In</string>
     <string name="title_activity_splash">SplashActivity</string>
 
+    <!--FacebookLoginActivity-->
+    <string name="title_activity_facebook_login">FacebookLoginActivity</string>
+    <string name="tag_line_text">Start to sell and buy</string>
+    <string name="connect_quick_text">QUICKLY CONNECT WITH</string>
+    <string name="facebookLogin_text1">By signing up or logging in, you agree to our </string>
+    <string name="facebookLogin_text2">Terms &amp; Conditions </string>
+    <string name="facebookLogin_text3">and </string>
+    <string name="privacy_policy_text">Privacy Policy</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="facebook_app_id">1855560077994466</string>
+
+
+
+
+
+
 </resources>

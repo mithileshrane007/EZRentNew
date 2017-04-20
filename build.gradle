@@ -45,7 +45,7 @@ ext {
     placeholderviewVersion = '0.6.1'
     debugDBVersion = '1.0.0'
 
-
+    facbookVersion='4.22.0'
     //Test dependencies
     junitVersion = '4.12'
     espressoVersion = '2.2.2'

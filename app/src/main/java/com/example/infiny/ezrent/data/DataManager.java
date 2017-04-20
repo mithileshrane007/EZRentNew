@@ -10,9 +10,8 @@ public interface DataManager extends PreferencesHelper {
     enum LoggedInMode {
 
         LOGGED_IN_MODE_LOGGED_OUT(0),
-        LOGGED_IN_MODE_GOOGLE(1),
-        LOGGED_IN_MODE_FB(2),
-        LOGGED_IN_MODE_SERVER(3);
+        LOGGED_IN_MODE_FB(1),
+        LOGGED_IN_MODE_SERVER(2);
 
         private final int mType;
 

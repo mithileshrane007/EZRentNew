@@ -5,6 +5,9 @@ import android.content.Context;
 
 import com.example.infiny.ezrent.di.ActivityContext;
 import com.example.infiny.ezrent.di.PerActivity;
+import com.example.infiny.ezrent.ui.facebooklogin.FacebookLoginMvpPresenter;
+import com.example.infiny.ezrent.ui.facebooklogin.FacebookLoginMvpView;
+import com.example.infiny.ezrent.ui.facebooklogin.FacebookLoginPresenter;
 import com.example.infiny.ezrent.ui.login.LoginMvpPresenter;
 import com.example.infiny.ezrent.ui.login.LoginMvpView;
 import com.example.infiny.ezrent.ui.login.LoginPresenter;
@@ -54,6 +57,12 @@ public class ActivityModule  {
     @PerActivity
     SplashMvpPresenter<SplashMvpView> provideSplashPresenter(SplashPresenter<SplashMvpView>
                                                                   presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    FacebookLoginMvpPresenter<FacebookLoginMvpView> provideFacebookLoginPresenter(FacebookLoginPresenter<FacebookLoginMvpView> presenter){
         return presenter;
     }
 }
