@@ -9,4 +9,8 @@ import com.example.infiny.ezrent.ui.base.MvpPresenter;
 public interface FacebookLoginMvpPresenter<V extends FacebookLoginMvpView> extends MvpPresenter<V> {
 
     void onFacebookLoginClick();
+
+    void onLoginClick();
+
+    void onSignUpClick();
 }

@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 public class SplashActivity extends LocationBaseActivity implements SplashMvpView,LocationPresenter.LocationView {
     private static final String TAG = "SplashActivity";
 
+    Boolean isConnected;
     @Inject
     SplashMvpPresenter<SplashMvpView> mPresenter;
     private LocationPresenter locationPresenter;
@@ -47,6 +48,7 @@ public class SplashActivity extends LocationBaseActivity implements SplashMvpVie
         setUnBinder(ButterKnife.bind(this));
 
         mPresenter.onAttach(SplashActivity.this);
+        isConnected = mPresenter.connectionSubscribe();
         locationPresenter = new LocationPresenter(this);
         getLocation();
 
@@ -141,4 +143,6 @@ public class SplashActivity extends LocationBaseActivity implements SplashMvpVie
         startActivity(intent);
         finish();
     }
+
+
 }

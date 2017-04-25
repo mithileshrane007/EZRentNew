@@ -5,6 +5,9 @@ import android.util.Log;
 import com.example.infiny.ezrent.data.DataManager;
 import com.example.infiny.ezrent.ui.base.BasePresenter;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -16,7 +19,6 @@ import io.reactivex.disposables.CompositeDisposable;
 public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
         implements SplashMvpPresenter<V> {
     private static final String TAG = "SplashPresenter";
-
 
 
     @Inject
@@ -39,4 +41,33 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     public String getLocationDetails() {
         return getDataManager().getLocation();
     }
+
+    @Override
+    public Boolean connectionSubscribe() {
+        final Boolean[] val = {null};
+        Subscriber<Boolean> subscriber=new Subscriber<Boolean>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+
+            }
+
+            @Override
+            public void onNext(Boolean o) {
+                val[0] =o;
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        return val[0];
+    }
+
+
 }

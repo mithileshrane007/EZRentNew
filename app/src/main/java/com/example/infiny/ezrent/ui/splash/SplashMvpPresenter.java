@@ -11,4 +11,9 @@ public interface SplashMvpPresenter<V extends SplashMvpView> extends MvpPresente
     void setLocationDetails(String text);
 
     String getLocationDetails();
+
+    Boolean connectionSubscribe();
+
+
+
 }

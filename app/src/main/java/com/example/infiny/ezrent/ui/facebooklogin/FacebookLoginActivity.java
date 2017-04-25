@@ -84,8 +84,10 @@ public class FacebookLoginActivity extends BaseActivity implements FacebookLogin
                 mPresenter.onFacebookLoginClick();
                 break;
             case R.id.btnSignUp:
+                mPresenter.onSignUpClick();
                 break;
             case R.id.btnLogin:
+                mPresenter.onLoginClick();
                 break;
         }
     }

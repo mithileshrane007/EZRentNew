@@ -24,6 +24,8 @@ public class EZRentApp extends MultiDexApplication {
         mApplicationComponent= DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
         mApplicationComponent.inject(this);
+
+
     }
 
 
